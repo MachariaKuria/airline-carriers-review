@@ -5,6 +5,7 @@ import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.Matchers.greaterThan;
 import static org.junit.Assert.assertThat;
 
+import java.util.Collection;
 import java.util.Optional;
 
 import javax.annotation.Resource;
@@ -40,7 +41,7 @@ public class JPAMappingsTest {
 		entityManager.clear();
 		
 		Optional<Destination> result = destinationRepo.findById(destinationId);
-		result.get();
+		city = result.get();
 		
 		assertThat(city.getName(),is("Nairobi"));
 	}
@@ -69,7 +70,7 @@ public class JPAMappingsTest {
 		entityManager.clear();
 		
 		Optional<AirlineForm> result = airlineFormRepo.findById(domesticId);
-		result.get();
+		domestic = result.get();
 		
 		assertThat(domestic.getName(), is("domestic"));
 		assertThat(domestic.getCarrierName(), is("delta"));
@@ -98,6 +99,26 @@ public class JPAMappingsTest {
 		
 		assertThat(international.getDestinations(),containsInAnyOrder(tokyo,nairobi));
 	}
+	
+	
+	
+	@Test
+	public void shouldFindAirlineFormForDestination() {
+		
+		Destination newyork = destinationRepo.save(new Destination("New York"));
+		
+		AirlineForm domesticNewYork = airlineFormRepo.save(new AirlineForm("Domestic","South West","Airbus A380 Flight # 122", newyork));
+		AirlineForm domesticColumbus = airlineFormRepo.save(new AirlineForm("Domestic","Delta","Bombadier Flight # 123", newyork));
+		
+		entityManager.flush();
+		entityManager.clear();
+		
+		Collection<AirlineForm> airlineFormForDestination = airlineFormRepo.findByDestinationsContains(newyork);
+		
+		assertThat(airlineFormForDestination,containsInAnyOrder(domesticNewYork,domesticColumbus));
+		
+	}
+	
 	
 	
 	

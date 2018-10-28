@@ -7,67 +7,41 @@ import java.util.HashSet;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class AirlineForm {
-	
+
 	@Id
 	@GeneratedValue
 	private long id;
-	
-	
+
 	private String name;
-	private String carrierName;
-	private String description;
 
-	@OneToMany
-	private Collection<Destination> destinations;
-	//Domestic(Columbus, New York)
-	//International(London,Tokyo)
-
+	@ManyToOne
+	private Carrier carrier;
 
 	public long getId() {
 
 		return id;
 	}
 
-
 	public String getName() {
 
 		return name;
 	}
 
-
-	public String getCarrierName() {
-
-		return carrierName;
-	}
-
-	public String getDescription() {
-		
-		return description;
-	}
-	
-	
-	public Collection<Destination> getDestinations() {
-		
-		return destinations;
-	}
-	
 	public AirlineForm() {
 
 	}
 
-	public AirlineForm(String name, String carrierName, String description, Destination...destinations) {
+	public AirlineForm(String name, Carrier carrier) {
 
 		this.name = name;
-		this.carrierName = carrierName;
-		this.description = description;
-		this.destinations = new HashSet<>(Arrays.asList(destinations));
+		this.carrier = carrier;
 
 	}
-
 
 	@Override
 	public int hashCode() {
@@ -76,7 +50,6 @@ public class AirlineForm {
 		result = prime * result + (int) (id ^ (id >>> 32));
 		return result;
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -91,8 +64,5 @@ public class AirlineForm {
 			return false;
 		return true;
 	}
-	
-	
-
 
 }

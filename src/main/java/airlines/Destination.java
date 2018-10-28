@@ -21,10 +21,8 @@ public class Destination {
 	
 	private String name;
 	
-	
-	@ManyToMany
-	private Collection<AirlineForm> airlineForms;//Domestic/International
-
+	@ManyToMany(mappedBy="destinations")
+	private Collection<Carrier> carriers;
 
 	public long getId() {
 	
@@ -36,21 +34,20 @@ public class Destination {
 		return name;
 	}
 
-	public Collection<AirlineForm> getAirlineForms() {
-		
-		return airlineForms;
+	public Collection<Carrier> getCarriers() {
+		return carriers;
 	}
 
 	public Destination() {
 
 	}
 
-	public Destination(String name, AirlineForm...airlineForms) {
+	public Destination(String name, Carrier...carriers) {
 
 		this.name=name;
-		this.airlineForms = new HashSet<>(Arrays.asList(airlineForms));
-
+		this.carriers = new HashSet<>(Arrays.asList(carriers));
 	}
+	
 
 	@Override
 	public int hashCode() {

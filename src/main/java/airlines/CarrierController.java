@@ -61,17 +61,6 @@ public class CarrierController {
 		
 	}
 
-	@RequestMapping("/airlineForm")
-	public String findOneAirlineForm(@RequestParam(value="id")long id, Model model) throws AirlineFormNotFoundException {
-		
-		Optional<AirlineForm> domestic = airlineFormRepo.findById(id);
-		if(domestic.isPresent()) {
-			model.addAttribute("airlineForms",domestic.get());
-			model.addAttribute("carriers", carrierRepo.findByCarriersContains(domestic.get()));
-			return "airlineForm";
-		}			
-		throw new AirlineFormNotFoundException();
-	}
 
 	@RequestMapping("/show-airlineForms")
 	public String findAllAirlineForms(Model model) {

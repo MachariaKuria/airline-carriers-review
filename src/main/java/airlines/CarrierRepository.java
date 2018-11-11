@@ -10,7 +10,5 @@ public interface CarrierRepository extends CrudRepository<Carrier, Long> {
 
 	Collection<Carrier> findByDestinationsId(long id);
 
-	Collection<Carrier> findByCarriersContains(AirlineForm airlineForm);
-
 
 }

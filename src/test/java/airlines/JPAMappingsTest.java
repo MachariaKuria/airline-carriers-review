@@ -176,23 +176,20 @@ public class JPAMappingsTest {
 	@Test // A Domestic/International airline can have many Carriers.
 	public void shouldEstablishAirlineFormCarrierRelationships() {
 
-		Carrier ba = carrierRepo.save(new Carrier("British Airways", "Flight #95"));
-		carrierRepo.save(ba);
-		long baId = ba.getId();
+		Carrier delta = carrierRepo.save(new Carrier("Delta", "Flight #95"));
+		Carrier sw = carrierRepo.save(new Carrier("South West", "Flight #455"));
 
-		AirlineForm domestic = new AirlineForm("Domestic", ba);
+		AirlineForm domestic = new AirlineForm("Domestic", delta,sw);
 		airlineFormRepo.save(domestic);
-
-		AirlineForm international = new AirlineForm("International", ba);
-		airlineFormRepo.save(international);
+		long domesticId = domestic.getId();
 
 		entityManager.flush();
 		entityManager.clear();
 
-		Optional<Carrier> result = carrierRepo.findById(baId);
-		ba = result.get();
+		Optional<AirlineForm> result = airlineFormRepo.findById(domesticId);
+		domestic = result.get();
 
-		assertThat(ba.getAirlineForms(), containsInAnyOrder(domestic, international));
+		assertThat(domestic.getCarriers(), containsInAnyOrder(delta, sw));
 
 	}
 }

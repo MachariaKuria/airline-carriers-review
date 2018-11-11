@@ -8,7 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Carrier {
@@ -23,8 +23,12 @@ public class Carrier {
 	@ManyToMany
 	private Collection<Destination> destinations;
 	
-	@OneToMany(mappedBy="carrier")
-	private Collection<AirlineForm> airlineForms;
+	@ManyToOne
+	private AirlineForm airlineForm;
+	
+	
+//	@OneToMany(mappedBy="carrier")
+//	private Collection<AirlineForm> airlineForms;
 	
 	public long getId() {
 
@@ -44,11 +48,6 @@ public class Carrier {
 	public Collection<Destination> getDestinations() {
 
 		return destinations;
-	}
-
-	public Collection<AirlineForm> getAirlineForms() {
-
-		return airlineForms;
 	}
 	
 	public Carrier() {

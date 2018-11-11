@@ -100,20 +100,6 @@ public class CarrierControllerTest {
 		verify(model).addAttribute("destinations", allDestinations);
 	}
 	
-	
-	
-	@Test
-	public void shouldAddSingleAirlineFormToModel() throws AirlineFormNotFoundException {
-		
-		long anyId = 1;
-		
-		when(airlineFormRepo.findById(anyId)).thenReturn(Optional.of(airlineForm));
-		
-		underTest.findOneAirlineForm(anyId, model);
-		
-		verify(model).addAttribute("airlineForms", airlineForm);
-	}
-	
 	@Test
 	public void shouldAddAllAirlineFormsToModel() {
 		Collection<AirlineForm> allAirlineForms = Arrays.asList(airlineForm, anotherAirlineForm);

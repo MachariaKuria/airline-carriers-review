@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns: th="http://www.thymeleaf.org">
+<head>
+    <title>A Destination</title>
+</head>
+<body>
+    <h1>A Single Destination</h1>
+    <div th:each = "destination: ${destinations}">
+        <p th:text = ${destination.name}></p>
+    </div>
+
+</body>
+
+
+</html>

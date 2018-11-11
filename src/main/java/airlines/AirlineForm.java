@@ -7,8 +7,7 @@ import java.util.HashSet;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class AirlineForm {
@@ -19,8 +18,8 @@ public class AirlineForm {
 
 	private String name;
 
-	@ManyToOne
-	private Carrier carrier;
+	@OneToMany
+	private Collection<Carrier> carriers;
 
 	public long getId() {
 
@@ -31,15 +30,19 @@ public class AirlineForm {
 
 		return name;
 	}
+	
+	public Collection<Carrier> getCarriers(){
+		return carriers;
+	}
 
 	public AirlineForm() {
 
 	}
 
-	public AirlineForm(String name, Carrier carrier) {
+	public AirlineForm(String name, Carrier...carriers) {
 
 		this.name = name;
-		this.carrier = carrier;
+		this.carriers = new HashSet<>(Arrays.asList(carriers));
 
 	}
 

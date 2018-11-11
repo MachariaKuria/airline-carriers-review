@@ -18,7 +18,7 @@ public class AirlineForm {
 
 	private String name;
 
-	@OneToMany
+	@OneToMany(mappedBy="airlineForm")
 	private Collection<Carrier> carriers;
 
 	public long getId() {

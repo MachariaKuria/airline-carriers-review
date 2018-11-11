@@ -50,9 +50,8 @@ public class CarrierControllerMockMvcTest {
 	@Test
 	public void shouldRouteToSingleCarrierView() throws Exception {
 
-		long airlineId = 1;
-		when(carrierRepo.findById(airlineId)).thenReturn(Optional.of(carrier));
-		mvc.perform(get("/carrier?id=1")).andExpect(view().name(is("carrier")));
+		when(carrierRepo.findById(3L)).thenReturn(Optional.of(carrier));
+		mvc.perform(get("/carrier?id=3")).andExpect(view().name(is("carrier")));
 
 	}
 

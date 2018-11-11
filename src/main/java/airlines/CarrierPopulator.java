@@ -31,7 +31,7 @@ public class CarrierPopulator implements CommandLineRunner {
 		Destination charlotte = destinationRepo.save(new Destination("Charlotte, North Carolina"));
 
 		Carrier kq = carrierRepo.save(new Carrier("Kenya Airways", "Flight #300", nairobi, tokyo, beijing));
-		Carrier ba = carrierRepo.save(new Carrier("Kenya Airways", "Flight #300", london, tokyo, beijing));
+		Carrier ba = carrierRepo.save(new Carrier("British Airways", "Flight #300", london, nairobi, beijing));
 		Carrier sw = carrierRepo.save(new Carrier("South West Airlines", "Flight #450", columbus, vegas));
 		Carrier delta = carrierRepo.save(new Carrier("Delta Airlines", "Flight #122", charlotte, vegas));
 

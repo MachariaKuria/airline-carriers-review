@@ -9,7 +9,7 @@
     <h1>A List of Carriers</h1>
     <div th:each="carrier: ${carriers}">
         <li>
-            <a href="@{/carrier(id=${carrier.id})}" th:text="carrier.carrierName"></a>
+            <a href="@{/carrier(id=${carrier.id})}" th:text="${carrier.carrierName}"></a>
         </li>
     </div>
 

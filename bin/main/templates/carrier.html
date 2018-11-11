@@ -5,10 +5,11 @@
 </head>
 <body>
     <h1>A Single Carrier</h1>
+
     <div th:each = "carrier: ${carriers}">
-        <p th:text = ${carrier.carrierName}></p>
-        <p th:text = ${carrier.description}></p>
-        <p th:text = ${carrier.destinations}></p>
+        <p th:text = "${carrier.carrierName}"></p>
+        <p th:text = "${carrier.description}"></p>
+        <!-- <p th:text = "${carrier.destinations}"></p> -->
     </div>
 
 </body>
